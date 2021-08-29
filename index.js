@@ -15,3 +15,4 @@ logger.log('Hello there!'); //Called Listener:  { id: 'b0d5d91d-9221-4e7f-8add-0
 logger.log('Howdy!'); //Called Listener:  { id: '46adeac6-7d39-49ea-8dd0-649268d2905e', msg: 'Howdy!' }
 logger.log('Tralala!'); //Called Listener:  { id: 'acc6584f-c420-4de4-bf73-0498eed88d0b', msg: 'Tralala!' }
 
+testi
