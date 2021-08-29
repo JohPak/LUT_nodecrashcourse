@@ -13,4 +13,4 @@ logger.on('message', (data) => console.log('Called Listener: ', data));
 
 logger.log('Hello there!');
 
-// JÄI KOHTAAN 55:50 videossa  ...
+// JÄI KOHTAAN 55:50 videossa  ...dddd
