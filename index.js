@@ -1,18 +1,49 @@
-// imports module to person variable from person.js file
-// const Person = require('./person')
+// Added two scripts to run. Start is for deployment, no need for nodemon there. But the dev script is for developement purposes. To launch:
+// ***********   npm run dev   ***************
+//
+//   "scripts": {
+//     "start": "node index",
+//     "dev": "nodemon index"
+//   },
 
-// const person1 = new Person('John Doe', 30);
+// VIDEO JÄI KOHTAAN 1:10
 
-// person1.greeting();
+const http = require('http');
+const path = require('path');
+const fs = require('fs');
 
-const Logger = require('./logger');
+const server = http.createServer((req, res) => {
+    // If url requested is plain /, we now it's the index-page
+    if (req.url === '/') {
+        fs.readFile(path.join(__dirname, 'public', 'index.html'), (err, content) => {
 
-// logger is a class, so must be instantiated (=creating new instance)
-const logger = new Logger
-logger.on('message', (data) => console.log('Called Listener: ', data));
+            // check for errors
+            if (err) throw err;
+            // Send headers. 200 = OK
+            res.writeHead(200, {'Content-Type': 'text/html'});
+    
+            // load a file to show in browser
+            res.end(content);
+        })
 
-logger.log('Hello there!'); //Called Listener:  { id: 'b0d5d91d-9221-4e7f-8add-09e11272e499', msg: 'Hello there!' }
-logger.log('Howdy!'); //Called Listener:  { id: '46adeac6-7d39-49ea-8dd0-649268d2905e', msg: 'Howdy!' }
-logger.log('Tralala!'); //Called Listener:  { id: 'acc6584f-c420-4de4-bf73-0498eed88d0b', msg: 'Tralala!' }
+    }
+    // If url requested is /about, we now it's the index-page
+    if (req.url === '/about') {
+        fs.readFile(path.join(__dirname, 'public', 'about.html'), (err, content) => {
 
-testi
+            // check for errors
+            if (err) throw err;
+            // Send headers. 200 = OK
+            res.writeHead(200, {'Content-Type': 'text/html'});
+    
+            // load a file to show in browser
+            res.end(content);
+        })
+
+    }
+});
+
+// use whatever dynamic port number host is deciding. If not found, then use 5000.
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
