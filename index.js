@@ -94,7 +94,6 @@ const server = http.createServer((req, res) => {
             res.end(content, 'utf8');
         }
     })
-    
 });
 
 // use whatever dynamic port number host is deciding. If not found, then use 5000.
