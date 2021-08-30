@@ -28,18 +28,17 @@ const server = http.createServer((req, res) => {
 
     }
     // If url requested is /about, we now it's the index-page
-    if (req.url === '/about') {
-        fs.readFile(path.join(__dirname, 'public', 'about.html'), (err, content) => {
-
-            // check for errors
-            if (err) throw err;
-            // Send headers. 200 = OK
-            res.writeHead(200, {'Content-Type': 'text/html'});
-    
-            // load a file to show in browser
-            res.end(content);
-        })
-
+    if (req.url === '/api/users') {
+        // array of objects
+        const users = [
+            { name: 'Bob Smith', age: 40},
+            { name: 'John Doe', age: 35}
+        ];
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        // turn array of objects into json content.
+        // Prints webpage with text:
+        // [{"name":"Bob Smith","age":40},{"name":"John Doe","age":35}]
+        res.end(JSON.stringify(users));
     }
 });
 
